@@ -1,0 +1,2501 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>WanderWise | Travel & Tourism Planner</title>
+
+<!-- Bootstrap -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+rel="stylesheet">
+
+<!-- Bootstrap Icons -->
+<link rel="stylesheet"
+href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<!-- Google Font -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet">
+
+
+<style>
+
+/* ================= GENERAL ================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:#f6fafb;
+    color:#222;
+}
+
+.page{
+    display:none;
+    min-height:100vh;
+    padding-top:90px;
+}
+
+.page.active{
+    display:block;
+}
+
+
+/* ================= NAVBAR ================= */
+
+.navbar{
+    background:rgba(5,20,25,.95);
+    backdrop-filter:blur(12px);
+    padding:15px 4%;
+}
+
+.navbar-brand{
+    font-size:26px;
+    font-weight:800;
+    color:#00e5ff!important;
+}
+
+.nav-link{
+    color:white!important;
+    margin:0 5px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.nav-link:hover,
+.nav-link.active{
+    color:#00e5ff!important;
+}
+
+.navbar-toggler{
+    border-color:#00e5ff;
+}
+
+
+/* ================= HOME ================= */
+
+.home{
+    padding-top:0;
+}
+
+.hero{
+
+    height:100vh;
+    min-height:650px;
+
+    background:
+    linear-gradient(
+        rgba(0,0,0,.4),
+        rgba(0,0,0,.65)
+    ),
+    url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=2000&q=80");
+
+    background-size:cover;
+    background-position:center;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    text-align:center;
+    color:white;
+}
+
+.hero-content{
+    max-width:950px;
+    padding:30px;
+}
+
+.hero-small{
+    letter-spacing:4px;
+    font-weight:600;
+}
+
+.hero h1{
+    font-size:clamp(45px,7vw,85px);
+    font-weight:800;
+}
+
+.hero h1 span{
+    color:#00e5ff;
+}
+
+.hero p{
+    font-size:20px;
+    margin:25px auto;
+    max-width:750px;
+}
+
+.hero-buttons{
+    display:flex;
+    gap:15px;
+    justify-content:center;
+    flex-wrap:wrap;
+}
+
+
+/* ================= COMMON ================= */
+
+.section{
+    padding:80px 6%;
+}
+
+.section-title{
+    text-align:center;
+    margin-bottom:50px;
+}
+
+.section-title h2{
+    font-size:40px;
+    font-weight:800;
+}
+
+.section-title span{
+    color:#00a9c7;
+}
+
+.section-title p{
+    color:#666;
+}
+
+.page-heading{
+
+    padding:80px 20px;
+
+    text-align:center;
+
+    background:
+    linear-gradient(
+        135deg,
+        #007c91,
+        #00c9a7
+    );
+
+    color:white;
+}
+
+.page-heading h1{
+    font-size:55px;
+    font-weight:800;
+}
+
+
+/* ================= HOME CARDS ================= */
+
+.home-intro{
+    text-align:center;
+    padding:70px 20px;
+}
+
+.home-intro h2{
+    font-weight:800;
+}
+
+.home-intro span{
+    color:#00a9c7;
+}
+
+.home-card{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:35px 25px;
+
+    text-align:center;
+
+    height:100%;
+
+    box-shadow:0 8px 30px rgba(0,0,0,.08);
+
+    transition:.4s;
+}
+
+.home-card:hover{
+    transform:translateY(-10px);
+}
+
+.home-card .icon{
+    font-size:55px;
+    margin-bottom:20px;
+}
+
+
+/* ================= DESTINATIONS ================= */
+
+.destination-card{
+
+    background:white;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    height:100%;
+
+    box-shadow:0 8px 30px rgba(0,0,0,.08);
+
+    transition:.4s;
+}
+
+.destination-card:hover{
+    transform:translateY(-10px);
+}
+
+.destination-card img{
+    width:100%;
+    height:230px;
+    object-fit:cover;
+}
+
+.destination-body{
+    padding:25px;
+}
+
+.destination-body h3{
+    font-weight:700;
+}
+
+.price{
+    color:#00a9c7;
+    font-size:20px;
+    font-weight:700;
+}
+
+
+/* ================= PLANNER ================= */
+
+.planner-box{
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:25px;
+
+    box-shadow:0 10px 35px rgba(0,0,0,.08);
+
+}
+
+.form-control,
+.form-select{
+    padding:13px;
+    border-radius:10px;
+}
+
+
+/* ================= HOTELS ================= */
+
+.hotel-card{
+
+    background:white;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    box-shadow:0 8px 30px rgba(0,0,0,.08);
+
+    height:100%;
+
+    transition:.4s;
+}
+
+.hotel-card:hover{
+    transform:translateY(-8px);
+}
+
+.hotel-card img{
+    width:100%;
+    height:230px;
+    object-fit:cover;
+}
+
+.hotel-body{
+    padding:25px;
+}
+
+
+/* ================= TRANSPORT ================= */
+
+.transport-card{
+
+    background:white;
+
+    padding:40px 25px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    height:100%;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.07);
+
+    transition:.3s;
+}
+
+.transport-card:hover{
+    transform:translateY(-8px);
+}
+
+.transport-icon{
+    font-size:60px;
+}
+
+
+/* ================= ITINERARY ================= */
+
+.timeline{
+    max-width:850px;
+    margin:auto;
+
+    border-left:4px solid #00bcd4;
+
+    padding-left:35px;
+}
+
+.timeline-item{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:15px;
+
+    margin-bottom:25px;
+
+    box-shadow:0 5px 20px rgba(0,0,0,.07);
+
+    position:relative;
+}
+
+.timeline-item:before{
+
+    content:"";
+
+    width:18px;
+    height:18px;
+
+    background:#00bcd4;
+
+    border-radius:50%;
+
+    position:absolute;
+
+    left:-46px;
+    top:30px;
+}
+
+
+/* ================= BUDGET ================= */
+
+.budget-box{
+
+    max-width:700px;
+
+    margin:auto;
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:25px;
+
+    box-shadow:0 10px 35px rgba(0,0,0,.08);
+
+}
+
+.total{
+
+    font-size:45px;
+
+    font-weight:800;
+
+    color:#00a9c7;
+
+}
+
+
+/* ================= FOOD ================= */
+
+.food-card{
+
+    background:white;
+
+    padding:35px 25px;
+
+    text-align:center;
+
+    border-radius:20px;
+
+    height:100%;
+
+    box-shadow:0 7px 25px rgba(0,0,0,.07);
+
+}
+
+.food-icon{
+    font-size:60px;
+}
+
+
+/* ================= GALLERY ================= */
+
+.gallery img{
+
+    width:100%;
+
+    height:260px;
+
+    object-fit:cover;
+
+    border-radius:18px;
+
+    transition:.4s;
+
+}
+
+.gallery img:hover{
+    transform:scale(1.04);
+}
+
+
+/* ================= REVIEWS ================= */
+
+.review{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    height:100%;
+
+    box-shadow:0 7px 25px rgba(0,0,0,.07);
+
+}
+
+.stars{
+    color:#ffc107;
+    font-size:22px;
+}
+
+
+/* ================= CONTACT ================= */
+
+.contact-box{
+
+    background:#06181d;
+
+    color:white;
+
+    border-radius:25px;
+
+    padding:50px;
+
+}
+
+
+/* ================= FOOTER ================= */
+
+footer{
+
+    background:#031014;
+
+    color:white;
+
+    padding:50px 6%;
+
+}
+
+footer a{
+
+    color:#bbb;
+
+    text-decoration:none;
+
+    cursor:pointer;
+
+}
+
+footer a:hover{
+    color:#00e5ff;
+}
+
+
+/* ================= DARK MODE ================= */
+
+.dark-mode{
+    background:#10191c;
+    color:white;
+}
+
+.dark-mode .home-card,
+.dark-mode .destination-card,
+.dark-mode .hotel-card,
+.dark-mode .transport-card,
+.dark-mode .planner-box,
+.dark-mode .timeline-item,
+.dark-mode .budget-box,
+.dark-mode .food-card,
+.dark-mode .review{
+    background:#1c2a2e;
+    color:white;
+}
+
+.dark-mode .section-title p{
+    color:#bbb;
+}
+
+
+/* ================= MOBILE ================= */
+
+@media(max-width:768px){
+
+    .navbar-brand{
+        font-size:21px;
+    }
+
+    .hero h1{
+        font-size:48px;
+    }
+
+    .hero p{
+        font-size:16px;
+    }
+
+    .page-heading h1{
+        font-size:40px;
+    }
+
+    .section-title h2{
+        font-size:30px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+                        NAVBAR
+===================================================== -->
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+
+<div class="container-fluid">
+
+<a class="navbar-brand"
+onclick="showPage('home')">
+
+🌍 WanderWise
+
+</a>
+
+
+<button class="navbar-toggler"
+data-bs-toggle="collapse"
+data-bs-target="#navbarMenu">
+
+<span class="navbar-toggler-icon"></span>
+
+</button>
+
+
+<div class="collapse navbar-collapse"
+id="navbarMenu">
+
+<ul class="navbar-nav ms-auto">
+
+<li class="nav-item">
+<a class="nav-link active"
+onclick="showPage('home')">
+🏠 Home
+</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link"
+onclick="showPage('destinations')">
+🌍 Destinations
+</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link"
+onclick="showPage('planner')">
+🧳 Planner
+</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link"
+onclick="showPage('hotels')">
+🏨 Hotels
+</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link"
+onclick="showPage('transport')">
+🚆 Transport
+</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link"
+onclick="showPage('itinerary')">
+📅 Itinerary
+</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link"
+onclick="showPage('budget')">
+💰 Budget
+</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link"
+onclick="showPage('food')">
+🍴 Food
+</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link"
+onclick="showPage('gallery')">
+📸 Gallery
+</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link"
+onclick="showPage('reviews')">
+⭐ Reviews
+</a>
+</li>
+
+<li class="nav-item">
+<a class="nav-link"
+onclick="showPage('contact')">
+📞 Contact
+</a>
+</li>
+
+<li class="nav-item">
+
+<button class="btn btn-outline-info ms-2"
+onclick="toggleDark()">
+
+🌙
+
+</button>
+
+</li>
+
+</ul>
+
+</div>
+
+</div>
+
+</nav>
+
+
+
+<!-- =====================================================
+                        HOME PAGE
+===================================================== -->
+
+<div id="home" class="page active home">
+
+
+<section class="hero">
+
+<div class="hero-content">
+
+<p class="hero-small">
+✈️ EXPLORE • DISCOVER • EXPERIENCE
+</p>
+
+<h1>
+
+Discover Your
+
+<span>Next Adventure</span>
+
+</h1>
+
+<p>
+
+Plan unforgettable journeys,
+discover beautiful destinations
+and create amazing memories.
+
+</p>
+
+
+<div class="hero-buttons">
+
+<button class="btn btn-info btn-lg rounded-pill"
+onclick="showPage('destinations')">
+
+🌍 Explore Destinations
+
+</button>
+
+
+<button class="btn btn-outline-light btn-lg rounded-pill"
+onclick="showPage('planner')">
+
+🧳 Plan My Trip
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section class="home-intro">
+
+<h2>
+Welcome to <span>WanderWise</span> 🌎
+</h2>
+
+<p>
+
+Your smart travel companion for planning
+your next unforgettable adventure.
+
+</p>
+
+</section>
+
+
+
+<section class="section">
+
+<div class="container">
+
+<div class="row g-4">
+
+
+<div class="col-md-4">
+
+<div class="home-card">
+
+<div class="icon">🌍</div>
+
+<h3>Explore</h3>
+
+<p>
+
+Discover beautiful destinations,
+hidden gems and exciting places.
+
+</p>
+
+<button class="btn btn-outline-info"
+onclick="showPage('destinations')">
+
+Explore
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="col-md-4">
+
+<div class="home-card">
+
+<div class="icon">🧳</div>
+
+<h3>Plan</h3>
+
+<p>
+
+Create a personalized travel plan
+based on your trip requirements.
+
+</p>
+
+<button class="btn btn-outline-info"
+onclick="showPage('planner')">
+
+Plan Trip
+
+</button>
+
+</div>
+
+</div>
+
+
+
+<div class="col-md-4">
+
+<div class="home-card">
+
+<div class="icon">💰</div>
+
+<h3>Budget</h3>
+
+<p>
+
+Calculate your estimated travel
+expenses easily.
+
+</p>
+
+<button class="btn btn-outline-info"
+onclick="showPage('budget')">
+
+Calculate
+
+</button>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+
+<!-- =====================================================
+                  DESTINATIONS PAGE
+===================================================== -->
+
+<div id="destinations" class="page">
+
+<div class="page-heading">
+
+<h1>🌍 Destinations</h1>
+
+<p>Explore amazing places around India</p>
+
+</div>
+
+
+<section class="section">
+
+<div class="container">
+
+<div class="row g-4">
+
+
+<!-- GOA -->
+
+<div class="col-lg-4 col-md-6">
+
+<div class="destination-card">
+
+<img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=900&q=80">
+
+<div class="destination-body">
+
+<h3>🏖️ Goa</h3>
+
+<p>
+
+Beautiful beaches, nightlife,
+water sports and delicious seafood.
+
+</p>
+
+<p class="price">
+₹7,999 onwards
+</p>
+
+<button class="btn btn-info"
+onclick="destinationInfo('Goa')">
+
+View Details
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- KERALA -->
+
+<div class="col-lg-4 col-md-6">
+
+<div class="destination-card">
+
+<img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=900&q=80">
+
+<div class="destination-body">
+
+<h3>🌴 Kerala</h3>
+
+<p>
+
+Backwaters, beaches, houseboats
+and beautiful natural landscapes.
+
+</p>
+
+<p class="price">
+₹8,499 onwards
+</p>
+
+<button class="btn btn-info"
+onclick="destinationInfo('Kerala')">
+
+View Details
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- MANALI -->
+
+<div class="col-lg-4 col-md-6">
+
+<div class="destination-card">
+
+<img src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=900&q=80">
+
+<div class="destination-body">
+
+<h3>🏔️ Manali</h3>
+
+<p>
+
+Snow mountains, valleys,
+adventure activities and nature.
+
+</p>
+
+<p class="price">
+₹9,999 onwards
+</p>
+
+<button class="btn btn-info"
+onclick="destinationInfo('Manali')">
+
+View Details
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- JAIPUR -->
+
+<div class="col-lg-4 col-md-6">
+
+<div class="destination-card">
+
+<img src="https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=900&q=80">
+
+<div class="destination-body">
+
+<h3>🏯 Jaipur</h3>
+
+<p>
+
+Royal palaces, forts,
+markets and cultural heritage.
+
+</p>
+
+<p class="price">
+₹6,999 onwards
+</p>
+
+<button class="btn btn-info"
+onclick="destinationInfo('Jaipur')">
+
+View Details
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- HYDERABAD -->
+
+<div class="col-lg-4 col-md-6">
+
+<div class="destination-card">
+
+<img src="https://images.unsplash.com/photo-1562979314-bee7453e911c?auto=format&fit=crop&w=900&q=80">
+
+<div class="destination-body">
+
+<h3>🏰 Hyderabad</h3>
+
+<p>
+
+Charminar, Golconda Fort,
+Hussain Sagar and Biryani.
+
+</p>
+
+<p class="price">
+₹4,999 onwards
+</p>
+
+<button class="btn btn-info"
+onclick="destinationInfo('Hyderabad')">
+
+View Details
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- SIKKIM -->
+
+<div class="col-lg-4 col-md-6">
+
+<div class="destination-card">
+
+<img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=900&q=80">
+
+<div class="destination-body">
+
+<h3>🏞️ Sikkim</h3>
+
+<p>
+
+Himalayan landscapes,
+monasteries and beautiful lakes.
+
+</p>
+
+<p class="price">
+₹10,999 onwards
+</p>
+
+<button class="btn btn-info"
+onclick="destinationInfo('Sikkim')">
+
+View Details
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+
+<!-- =====================================================
+                    PLANNER PAGE
+===================================================== -->
+
+<div id="planner" class="page">
+
+<div class="page-heading">
+
+<h1>🧳 Trip Planner</h1>
+
+<p>Create your personalized travel plan</p>
+
+</div>
+
+
+<section class="section">
+
+<div class="planner-box">
+
+<div class="row g-4">
+
+
+<div class="col-md-6">
+
+<label>
+📍 Destination
+</label>
+
+<select id="planDestination"
+class="form-select">
+
+<option>Goa</option>
+<option>Kerala</option>
+<option>Manali</option>
+<option>Jaipur</option>
+<option>Hyderabad</option>
+<option>Sikkim</option>
+
+</select>
+
+</div>
+
+
+<div class="col-md-6">
+
+<label>
+👥 Travelers
+</label>
+
+<input type="number"
+id="travelers"
+class="form-control"
+value="2"
+min="1">
+
+</div>
+
+
+<div class="col-md-6">
+
+<label>
+📅 Start Date
+</label>
+
+<input type="date"
+id="startDate"
+class="form-control">
+
+</div>
+
+
+<div class="col-md-6">
+
+<label>
+⏱️ Number of Days
+</label>
+
+<input type="number"
+id="numberDays"
+class="form-control"
+value="3"
+min="1">
+
+</div>
+
+
+<div class="col-12 text-center">
+
+<button class="btn btn-info btn-lg px-5"
+onclick="createPlan()">
+
+✨ Create My Travel Plan
+
+</button>
+
+</div>
+
+</div>
+
+
+<div id="planResult"></div>
+
+</div>
+
+</section>
+
+</div>
+
+
+
+<!-- =====================================================
+                      HOTELS PAGE
+===================================================== -->
+
+<div id="hotels" class="page">
+
+<div class="page-heading">
+
+<h1>🏨 Hotels</h1>
+
+<p>Find comfortable stays for your journey</p>
+
+</div>
+
+
+<section class="section">
+
+<div class="container">
+
+<div class="row g-4">
+
+
+<div class="col-md-4">
+
+<div class="hotel-card">
+
+<img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=900&q=80">
+
+<div class="hotel-body">
+
+<h3>🌟 Grand Palace</h3>
+
+<p>
+Luxury rooms • Pool • Restaurant
+</p>
+
+<h5>₹3,500 / night</h5>
+
+<button class="btn btn-info"
+onclick="bookHotel('Grand Palace')">
+
+Book Now
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="col-md-4">
+
+<div class="hotel-card">
+
+<img src="https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=900&q=80">
+
+<div class="hotel-body">
+
+<h3>🌴 Paradise Resort</h3>
+
+<p>
+Beach view • Breakfast • Wi-Fi
+</p>
+
+<h5>₹4,200 / night</h5>
+
+<button class="btn btn-info"
+onclick="bookHotel('Paradise Resort')">
+
+Book Now
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="col-md-4">
+
+<div class="hotel-card">
+
+<img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?auto=format&fit=crop&w=900&q=80">
+
+<div class="hotel-body">
+
+<h3>🏔️ Mountain View</h3>
+
+<p>
+Mountain view • Parking • Restaurant
+</p>
+
+<h5>₹2,800 / night</h5>
+
+<button class="btn btn-info"
+onclick="bookHotel('Mountain View')">
+
+Book Now
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+
+<!-- =====================================================
+                   TRANSPORT PAGE
+===================================================== -->
+
+<div id="transport" class="page">
+
+<div class="page-heading">
+
+<h1>🚆 Transport</h1>
+
+<p>Choose your preferred mode of travel</p>
+
+</div>
+
+
+<section class="section">
+
+<div class="container">
+
+<div class="row g-4">
+
+
+<div class="col-md-3">
+
+<div class="transport-card">
+
+<div class="transport-icon">✈️</div>
+
+<h3>Flights</h3>
+
+<p>Fast and convenient air travel.</p>
+
+<button class="btn btn-outline-info"
+onclick="transportAlert('Flights')">
+
+Search
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="col-md-3">
+
+<div class="transport-card">
+
+<div class="transport-icon">🚆</div>
+
+<h3>Trains</h3>
+
+<p>Affordable railway journeys.</p>
+
+<button class="btn btn-outline-info"
+onclick="transportAlert('Trains')">
+
+Search
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="col-md-3">
+
+<div class="transport-card">
+
+<div class="transport-icon">🚌</div>
+
+<h3>Buses</h3>
+
+<p>Comfortable road transportation.</p>
+
+<button class="btn btn-outline-info"
+onclick="transportAlert('Buses')">
+
+Search
+
+</button>
+
+</div>
+
+</div>
+
+
+<div class="col-md-3">
+
+<div class="transport-card">
+
+<div class="transport-icon">🚗</div>
+
+<h3>Car Rental</h3>
+
+<p>Travel freely at your own pace.</p>
+
+<button class="btn btn-outline-info"
+onclick="transportAlert('Car Rental')">
+
+Search
+
+</button>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+
+<!-- =====================================================
+                    ITINERARY PAGE
+===================================================== -->
+
+<div id="itinerary" class="page">
+
+<div class="page-heading">
+
+<h1>📅 Travel Itinerary</h1>
+
+<p>Organize every day of your journey</p>
+
+</div>
+
+
+<section class="section">
+
+<div class="timeline">
+
+
+<div class="timeline-item">
+
+<h3>Day 1️⃣ — Arrival</h3>
+
+<p>
+
+✈️ Reach your destination<br>
+🏨 Hotel check-in<br>
+🌆 Evening city exploration<br>
+🍴 Dinner at a local restaurant
+
+</p>
+
+</div>
+
+
+<div class="timeline-item">
+
+<h3>Day 2️⃣ — Sightseeing</h3>
+
+<p>
+
+🏛️ Visit major attractions<br>
+📸 Photography<br>
+🍛 Try local cuisine<br>
+🌅 Sunset viewpoint
+
+</p>
+
+</div>
+
+
+<div class="timeline-item">
+
+<h3>Day 3️⃣ — Adventure</h3>
+
+<p>
+
+🏔️ Outdoor activities<br>
+🛍️ Shopping<br>
+☕ Explore local cafes<br>
+🎉 Enjoy the evening
+
+</p>
+
+</div>
+
+
+<div class="timeline-item">
+
+<h3>Day 4️⃣ — Departure</h3>
+
+<p>
+
+🌅 Morning walk<br>
+🛍️ Buy souvenirs<br>
+🏨 Check out<br>
+✈️ Return journey
+
+</p>
+
+</div>
+
+
+</div>
+
+</section>
+
+</div>
+
+
+
+<!-- =====================================================
+                     BUDGET PAGE
+===================================================== -->
+
+<div id="budget" class="page">
+
+<div class="page-heading">
+
+<h1>💰 Budget Calculator</h1>
+
+<p>Plan your expenses before travelling</p>
+
+</div>
+
+
+<section class="section">
+
+<div class="budget-box">
+
+
+<label>
+🏨 Hotel Cost
+</label>
+
+<input type="number"
+id="hotelCost"
+class="form-control mb-3"
+value="5000">
+
+
+<label>
+🚆 Transport Cost
+</label>
+
+<input type="number"
+id="transportCost"
+class="form-control mb-3"
+value="3000">
+
+
+<label>
+🍴 Food Cost
+</label>
+
+<input type="number"
+id="foodCost"
+class="form-control mb-3"
+value="2500">
+
+
+<label>
+🎢 Activities
+</label>
+
+<input type="number"
+id="activityCost"
+class="form-control mb-3"
+value="1500">
+
+
+<button class="btn btn-info w-100"
+onclick="calculateBudget()">
+
+Calculate Total 💰
+
+</button>
+
+
+<hr>
+
+
+<p>
+Estimated Trip Cost
+</p>
+
+<div class="total"
+id="totalBudget">
+
+₹0
+
+</div>
+
+
+</div>
+
+</section>
+
+</div>
+
+
+
+<!-- =====================================================
+                       FOOD PAGE
+===================================================== -->
+
+<div id="food" class="page">
+
+<div class="page-heading">
+
+<h1>🍴 Food Guide</h1>
+
+<p>Taste the culture of every destination</p>
+
+</div>
+
+
+<section class="section">
+
+<div class="container">
+
+<div class="row g-4">
+
+
+<div class="col-md-3">
+
+<div class="food-card">
+
+<div class="food-icon">🍛</div>
+
+<h3>Biryani</h3>
+
+<p>
+Hyderabadi aromatic rice dish.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="col-md-3">
+
+<div class="food-card">
+
+<div class="food-icon">🥥</div>
+
+<h3>Kerala Sadya</h3>
+
+<p>
+Traditional feast served on banana leaf.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="col-md-3">
+
+<div class="food-card">
+
+<div class="food-icon">🐟</div>
+
+<h3>Goan Seafood</h3>
+
+<p>
+Fresh seafood with coastal flavours.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="col-md-3">
+
+<div class="food-card">
+
+<div class="food-icon">🥘</div>
+
+<h3>Rajasthani Thali</h3>
+
+<p>
+Traditional royal cuisine.
+</p>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+
+<!-- =====================================================
+                     GALLERY PAGE
+===================================================== -->
+
+<div id="gallery" class="page">
+
+<div class="page-heading">
+
+<h1>📸 Travel Gallery</h1>
+
+<p>Beautiful places. Beautiful memories.</p>
+
+</div>
+
+
+<section class="section">
+
+<div class="container">
+
+<div class="row g-4 gallery">
+
+
+<div class="col-md-4">
+
+<img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=80">
+
+</div>
+
+
+<div class="col-md-4">
+
+<img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=900&q=80">
+
+</div>
+
+
+<div class="col-md-4">
+
+<img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=900&q=80">
+
+</div>
+
+
+<div class="col-md-4">
+
+<img src="https://images.unsplash.com/photo-1477587458883-47145ed94245?auto=format&fit=crop&w=900&q=80">
+
+</div>
+
+
+<div class="col-md-4">
+
+<img src="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=900&q=80">
+
+</div>
+
+
+<div class="col-md-4">
+
+<img src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=900&q=80">
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+
+<!-- =====================================================
+                     REVIEWS PAGE
+===================================================== -->
+
+<div id="reviews" class="page">
+
+<div class="page-heading">
+
+<h1>⭐ Traveler Reviews</h1>
+
+<p>Experiences shared by our travelers</p>
+
+</div>
+
+
+<section class="section">
+
+<div class="container">
+
+<div class="row g-4">
+
+
+<div class="col-md-4">
+
+<div class="review">
+
+<div class="stars">
+★★★★★
+</div>
+
+<h4>Great Experience!</h4>
+
+<p>
+
+"WanderWise made planning our Goa trip
+very easy and enjoyable."
+
+</p>
+
+<strong>— Ananya</strong>
+
+</div>
+
+</div>
+
+
+<div class="col-md-4">
+
+<div class="review">
+
+<div class="stars">
+★★★★★
+</div>
+
+<h4>Very Useful</h4>
+
+<p>
+
+"The budget calculator helped us
+manage our travel expenses."
+
+</p>
+
+<strong>— Rahul</strong>
+
+</div>
+
+</div>
+
+
+<div class="col-md-4">
+
+<div class="review">
+
+<div class="stars">
+★★★★☆
+</div>
+
+<h4>Beautiful Website</h4>
+
+<p>
+
+"I loved the destination information
+and travel planning features."
+
+</p>
+
+<strong>— Priya</strong>
+
+</div>
+
+</div>
+
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+
+<!-- =====================================================
+                     CONTACT PAGE
+===================================================== -->
+
+<div id="contact" class="page">
+
+<div class="page-heading">
+
+<h1>📞 Contact Us</h1>
+
+<p>We are here to help you plan your journey</p>
+
+</div>
+
+
+<section class="section">
+
+<div class="container">
+
+<div class="contact-box">
+
+<div class="row g-5">
+
+
+<div class="col-md-6">
+
+<h2>Let's Talk ✈️</h2>
+
+<p>
+
+Have questions about destinations,
+hotels or your travel plans?
+
+</p>
+
+<br>
+
+<p>
+📧 support@wanderwise.com
+</p>
+
+<p>
+📱 +91 98765 43210
+</p>
+
+<p>
+📍 India
+</p>
+
+</div>
+
+
+<div class="col-md-6">
+
+<input type="text"
+class="form-control mb-3"
+id="contactName"
+placeholder="Your Name">
+
+
+<input type="email"
+class="form-control mb-3"
+id="contactEmail"
+placeholder="Email Address">
+
+
+<textarea
+class="form-control mb-3"
+rows="5"
+id="contactMessage"
+placeholder="Your Message"></textarea>
+
+
+<button class="btn btn-info w-100"
+onclick="sendMessage()">
+
+Send Message 🚀
+
+</button>
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</div>
+
+
+
+<!-- =====================================================
+                       FOOTER
+===================================================== -->
+
+<footer>
+
+<div class="container">
+
+<div class="row">
+
+
+<div class="col-md-5">
+
+<h3>🌍 WanderWise</h3>
+
+<p>
+
+Your smart travel companion for
+exploring the world.
+
+</p>
+
+</div>
+
+
+<div class="col-md-7">
+
+<div class="row">
+
+<div class="col-6">
+
+<h5>Explore</h5>
+
+<p>
+<a onclick="showPage('destinations')">
+Destinations
+</a>
+</p>
+
+<p>
+<a onclick="showPage('hotels')">
+Hotels
+</a>
+</p>
+
+<p>
+<a onclick="showPage('gallery')">
+Gallery
+</a>
+</p>
+
+</div>
+
+
+<div class="col-6">
+
+<h5>Plan</h5>
+
+<p>
+<a onclick="showPage('planner')">
+Trip Planner
+</a>
+</p>
+
+<p>
+<a onclick="showPage('budget')">
+Budget
+</a>
+</p>
+
+<p>
+<a onclick="showPage('contact')">
+Contact
+</a>
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<hr>
+
+<p class="text-center mb-0">
+
+© 2026 WanderWise | Travel & Tourism Planner
+
+</p>
+
+</div>
+
+</footer>
+
+
+
+<!-- =====================================================
+                       JAVASCRIPT
+===================================================== -->
+
+<script>
+
+/* ================= PAGE NAVIGATION ================= */
+
+function showPage(pageId){
+
+    // Hide every page
+
+    let pages =
+    document.querySelectorAll(".page");
+
+    pages.forEach(function(page){
+
+        page.classList.remove("active");
+
+    });
+
+
+    // Show selected page
+
+    document
+    .getElementById(pageId)
+    .classList.add("active");
+
+
+    // Update navbar
+
+    let links =
+    document.querySelectorAll(".nav-link");
+
+    links.forEach(function(link){
+
+        link.classList.remove("active");
+
+    });
+
+
+    // Scroll to top
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+
+    // Close mobile menu
+
+    let menu =
+    document.getElementById("navbarMenu");
+
+    if(menu.classList.contains("show")){
+
+        new bootstrap.Collapse(menu).hide();
+
+    }
+
+}
+
+
+/* ================= DESTINATION DETAILS ================= */
+
+function destinationInfo(place){
+
+    let message="";
+
+    if(place==="Goa"){
+
+        message =
+        "🏖️ Goa\n\n" +
+        "Best for beaches, nightlife, water sports and seafood.";
+
+    }
+
+    else if(place==="Kerala"){
+
+        message =
+        "🌴 Kerala\n\n" +
+        "Best for backwaters, houseboats, beaches and nature.";
+
+    }
+
+    else if(place==="Manali"){
+
+        message =
+        "🏔️ Manali\n\n" +
+        "Best for mountains, snow and adventure activities.";
+
+    }
+
+    else if(place==="Jaipur"){
+
+        message =
+        "🏯 Jaipur\n\n" +
+        "Best for forts, palaces, culture and shopping.";
+
+    }
+
+    else if(place==="Hyderabad"){
+
+        message =
+        "🏰 Hyderabad\n\n" +
+        "Best for heritage sites, Charminar and delicious Biryani.";
+
+    }
+
+    else{
+
+        message =
+        "🏞️ Sikkim\n\n" +
+        "Best for Himalayan scenery, lakes and monasteries.";
+
+    }
+
+    alert(message);
+
+}
+
+
+/* ================= TRIP PLANNER ================= */
+
+function createPlan(){
+
+    let destination =
+    document.getElementById("planDestination").value;
+
+    let travelers =
+    document.getElementById("travelers").value;
+
+    let date =
+    document.getElementById("startDate").value;
+
+    let days =
+    document.getElementById("numberDays").value;
+
+
+    if(date===""){
+
+        date="Not selected";
+
+    }
+
+
+    document.getElementById("planResult")
+    .innerHTML = `
+
+    <div class="alert alert-info mt-4">
+
+        <h3>🎉 Your Trip Plan</h3>
+
+        <hr>
+
+        <p>
+        📍 <b>Destination:</b>
+        ${destination}
+        </p>
+
+        <p>
+        👥 <b>Travelers:</b>
+        ${travelers}
+        </p>
+
+        <p>
+        📅 <b>Start Date:</b>
+        ${date}
+        </p>
+
+        <p>
+        ⏱️ <b>Duration:</b>
+        ${days} days
+        </p>
+
+        <hr>
+
+        <h5>Suggested Activities</h5>
+
+        <p>
+        🗺️ Sightseeing<br>
+        🍴 Local Food<br>
+        📸 Photography<br>
+        🛍️ Shopping<br>
+        🌅 Sunset Experience
+        </p>
+
+        <button class="btn btn-success"
+        onclick="alert('✅ Trip saved successfully!')">
+
+        💾 Save Trip
+
+        </button>
+
+    </div>
+
+    `;
+
+}
+
+
+/* ================= HOTEL ================= */
+
+function bookHotel(name){
+
+    alert(
+        "🏨 Booking request for " +
+        name +
+        " received!\n\n" +
+        "You can continue with the booking process."
+    );
+
+}
+
+
+/* ================= TRANSPORT ================= */
+
+function transportAlert(type){
+
+    alert(
+        "🚀 " +
+        type +
+        " search feature selected!"
+    );
+
+}
+
+
+/* ================= BUDGET ================= */
+
+function calculateBudget(){
+
+    let hotel =
+    Number(
+        document.getElementById("hotelCost").value
+    );
+
+    let transport =
+    Number(
+        document.getElementById("transportCost").value
+    );
+
+    let food =
+    Number(
+        document.getElementById("foodCost").value
+    );
+
+    let activities =
+    Number(
+        document.getElementById("activityCost").value
+    );
+
+
+    let total =
+    hotel +
+    transport +
+    food +
+    activities;
+
+
+    document.getElementById("totalBudget")
+    .innerText =
+    "₹" +
+    total.toLocaleString("en-IN");
+
+}
+
+
+/* ================= CONTACT ================= */
+
+function sendMessage(){
+
+    let name =
+    document.getElementById("contactName").value;
+
+    let email =
+    document.getElementById("contactEmail").value;
+
+    let message =
+    document.getElementById("contactMessage").value;
+
+
+    if(
+        name==="" ||
+        email==="" ||
+        message===""
+    ){
+
+        alert(
+            "⚠️ Please fill all the fields."
+        );
+
+        return;
+
+    }
+
+
+    alert(
+        "✅ Thank you " +
+        name +
+        "!\n\n" +
+        "Your message has been submitted successfully."
+    );
+
+
+    document.getElementById("contactName").value="";
+    document.getElementById("contactEmail").value="";
+    document.getElementById("contactMessage").value="";
+
+}
+
+
+/* ================= DARK MODE ================= */
+
+function toggleDark(){
+
+    document.body
+    .classList
+    .toggle("dark-mode");
+
+}
+
+</script>
+
+
+<!-- Bootstrap JS -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js">
+</script>
+
+
+</body>
+</html>
+```
